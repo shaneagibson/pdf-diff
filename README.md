@@ -13,6 +13,15 @@ The comparison images for any pages with differences will be saved to `/img-diff
 > node pdf-diff/index.js
 ```
 
+An example of the output is:
+
+```
+[ { pdf: 'pdf1.pdf', page: '0', outcome: 'SAME' },
+  { pdf: 'pdf1.pdf', page: '1', outcome: 'SAME' },
+  { pdf: 'pdf2.pdf', page: '0', outcome: 'DIFFERENT' },
+  { pdf: 'pdf2.pdf', page: '1', outcome: 'DIFFERENT' } ]
+```
+
 ### Note
 
 You will need to have `convert`, `gs`, and `pdfinfo` commands.
