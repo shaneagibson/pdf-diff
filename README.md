@@ -16,10 +16,8 @@ The comparison images for any pages with differences will be saved to `/img-diff
 An example of the output is:
 
 ```
-[ { pdf: 'pdf1.pdf', page: '0', outcome: 'SAME' },
-  { pdf: 'pdf1.pdf', page: '1', outcome: 'SAME' },
-  { pdf: 'pdf2.pdf', page: '0', outcome: 'DIFFERENT' },
-  { pdf: 'pdf2.pdf', page: '1', outcome: 'DIFFERENT' } ]
+{ pdf1: { success: true },
+  pdf2: { success: false, errorPages: [ '0', '1' ] } }
 ```
 
 ### Note

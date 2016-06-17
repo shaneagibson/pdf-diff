@@ -28,6 +28,19 @@
       "version": "1.2.0",
       "from": "rmdir@latest",
       "resolved": "https://registry.npmjs.org/rmdir/-/rmdir-1.2.0.tgz"
+    },
+    "underscore": {
+      "version": "1.8.3",
+      "from": "underscore@latest",
+      "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.8.3.tgz"
+    },
+    "image-size": {
+      "version": "0.5.0",
+      "from": "image-size@latest",
+      "resolved": "https://registry.npmjs.org/image-size/-/image-size-0.5.0.tgz"
+    },
+    "gm": {
+
     }
   }
 }
