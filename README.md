@@ -10,7 +10,7 @@ The baseline PDF documents should be in `/img-diff/baseline/`. The PDF documents
 The comparison images for any pages with differences will be saved to `/img-diff/output/`, each in the format `[pdfFilename]-[pageIndex].png`, i.e. `pdf1-0.png`.
 
 ```
-> node index.js
+> node pdf-diff/index.js
 ```
 
 ### Note
