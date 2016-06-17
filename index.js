@@ -88,7 +88,7 @@ var cleanup = function() {
 };
 
 var error = function(error) {
-    console.log("ERROR: "+error);
+    console.log("ERROR: "+JSON.stringify(error));
 };
 
 return prepare()
@@ -128,7 +128,11 @@ function compareImage(image1, image2, outputImage) {
 
 function convertPDFToPageImages(pdfFile, outputDir) {
     var outputDirectory = outputDir+"/"+path.dirname(pdfFile)+"/";
-    var pdf = new PDFImage(pdfFile, { outputDirectory : outputDirectory });
+    var pdf = new PDFImage(pdfFile, { outputDirectory: outputDirectory });
+    pdf.setConvertOptions({
+        "-quality": "100",
+        "-density": "500"
+    });
     return pdf.numberOfPages().then(function(numberOfPages) {
         var promises = [];
         for (var i = 0; i < numberOfPages; i++) {
