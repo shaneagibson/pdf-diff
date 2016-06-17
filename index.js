@@ -37,15 +37,18 @@ var comparePDFPageImages = function() {
 };
 
 var presentResults = function(results) {
-    console.log(results); // TODO - enhance reporting
+    console.log(results.map(function(result) {
+        var fileAndPage = result.file.substring(0, result.file.indexOf(".")).split("-");
+        return {
+            pdf: fileAndPage[0]+".pdf",
+            page: fileAndPage[1],
+            outcome: result.isDifferent ? "DIFFERENT" : "SAME"
+        };
+    }));
 };
 
 var cleanup = function() {
     return deleteDirectory(tmpDir);
-};
-
-var complete = function() {
-    console.log("COMPLETE");
 };
 
 var error = function(error) {
@@ -57,7 +60,6 @@ prepare()
     .then(comparePDFPageImages)
     .then(presentResults)
     .then(cleanup)
-    .then(complete)
     .catch(error);
 
 function compareImage(image1, image2, outputImage) {
