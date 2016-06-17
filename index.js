@@ -10,7 +10,6 @@ var fs = require("fs");
 var path = require("path");
 var rmdir = require('rmdir');
 
-
 var prepare = function() {
     return deleteDirectory(outputDir)
         .then(function() { return createDirectory(outputDir); } )
@@ -41,8 +40,8 @@ var presentResults = function(results) {
         var fileAndPage = result.file.substring(0, result.file.indexOf(".")).split("-");
         return {
             pdf: fileAndPage[0]+".pdf",
-            page: fileAndPage[1],
-            outcome: result.isDifferent ? "DIFFERENT" : "SAME"
+            page: parseInt(fileAndPage[1])+1,
+            outcome: result.outcome
         };
     }));
 };
@@ -71,6 +70,18 @@ function compareImage(image1, image2, outputImage) {
         imageOutputPath: outputImage
     });
     return new Promise(function(resolve, reject) {
+        var checkExists = function(image, errorOutcome) {
+            if (!fileExists(image)) {
+                resolve({
+                    file: path.basename(image),
+                    outcome: outcome
+                });
+                return true;
+            }
+            return false;
+        };
+        if (checkExists(image1, "FILE 1 MISSING")) return;
+        if (checkExists(image2, "FILE 2 MISSING")) return;
         diff.run(function (error, result) {
             if (error) {
                 reject(error);
@@ -81,7 +92,7 @@ function compareImage(image1, image2, outputImage) {
                 }
                 resolve({
                     file: path.basename(image1),
-                    isDifferent: isDifferent
+                    outcome: isDifferent ? "DIFFERENT" : "SAME"
                 });
             }
         });
@@ -110,11 +121,18 @@ function deleteDirectory(directory) {
 
 function createDirectory(directory) {
     return new Promise(function (resolve, reject) {
-        try {
-            fs.statSync(directory);
-        } catch(e) {
+        if (!fileExists(directory)) {
             fs.mkdirSync(directory);
         }
         resolve();
     });
+}
+
+function fileExists(file) {
+    try {
+        fs.statSync(file);
+        return true;
+    } catch(e) {
+        return false;
+    }
 }
