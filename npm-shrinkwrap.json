@@ -40,7 +40,9 @@
       "resolved": "https://registry.npmjs.org/image-size/-/image-size-0.5.0.tgz"
     },
     "gm": {
-
+      "version": "1.22.0",
+      "from": "gm@latest",
+      "resolved": "https://registry.npmjs.org/gm/-/gm-1.22.0.tgz"
     }
   }
 }

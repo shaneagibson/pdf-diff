@@ -168,7 +168,7 @@ function createBlankImage(filename, dimensions) {
     return new Promise(function(resolve, reject) {
         gm(dimensions.height, dimensions.width, "#FFFFFF")
             .drawText(30, 20, "PAGE MISSING")
-            .bitdepth(16)
+            .bitdepth(8)
             .write(filename, function (err) {
                 if (err) {
                     reject(err);
