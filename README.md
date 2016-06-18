@@ -18,6 +18,7 @@ Examples of the output are:
 {"pdf1":"baseline/pdf1.pdf","pdf2":"test/pdf1.pdf","success":true}
 ```
 
+
 ### Note
 
 You will need to have `convert`, `gs`, and `pdfinfo` commands.

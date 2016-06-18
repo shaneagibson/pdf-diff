@@ -7,14 +7,10 @@ var sizeOf = require('image-size');
 var gm = require('gm').subClass({imageMagick: true});
 
 function PDFDiff(outputDir, options) {
+    if (!outputDir) outputDir = "output";
     if (!options) options = {};
     this._imageDensity = options.imageDensity || 200;
-    this._overlays = options.overlays || [ {
-            x0: 395 * 4,
-            x1: 400 * 4,
-            y0: 350 * 4,
-            y1: 390 * 4
-        } ];
+    this._overlays = options.overlays || [];
     this._tempDir = (options.tempDir || "tmp");
     this._outputDir = outputDir;
 }
