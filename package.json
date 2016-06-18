@@ -1,0 +1,20 @@
+{
+  "name": "pdf-diff",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": {
+    "name": "Shane Gibson",
+    "email": "shane@epsilontechnologies.co.uk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shaneagibson/pdf-diff.git"
+  },
+  "dependencies": {
+    "blink-diff": "1.0.12",
+    "pdf-image": "1.1.0",
+    "underscore": "1.8.3",
+    "image-size": "0.5.0",
+    "gm": "1.22.0"
+  }
+}
