@@ -82,8 +82,6 @@ PDFDiff.prototype = {
                 };
             };
             var result = {
-                pdf1: pdf1,
-                pdf2: pdf2,
                 success: errors.length == 0
             };
             if (errors.length > 0) {
