@@ -29,6 +29,26 @@
       "from": "underscore@latest",
       "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.8.3.tgz"
     },
+    "stream-buffers": {
+      "version": "3.0.0",
+      "from": "stream-buffers@latest",
+      "resolved": "https://registry.npmjs.org/stream-buffers/-/stream-buffers-3.0.0.tgz"
+    },
+    "request": {
+      "version": "2.72.0",
+      "from": "request@latest",
+      "resolved": "https://registry.npmjs.org/request/-/request-2.72.0.tgz"
+    },
+    "iconv-lite": {
+      "version": "0.4.13",
+      "from": "iconv-lite@latest",
+      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.13.tgz"
+    },
+    "promise": {
+      "version": "7.1.1",
+      "from": "promise@latest",
+      "resolved": "https://registry.npmjs.org/promise/-/promise-7.1.1.tgz"
+    },
     "image-size": {
       "version": "0.5.0",
       "from": "image-size@latest",
