@@ -12,10 +12,10 @@ new PDFDiff("output").diff("baseline/pdf1.pdf", "test/pdf1.pdf");
 Examples of the output are:
 
 ```
-{"pdf1":"baseline/pdf2.pdf","pdf2":"test/pdf2.pdf","success":false,"errors":[{"page":1,"snapshot":"output/3832071895/pdf-0.png"},{"page":2,"snapshot":"output/3832071895/pdf-1.png"}]}
+{ "success": false, "errors": [ { "page": 1, "snapshot": "output/3832071895/pdf-0.png" } , { "page": 2, "snapshot": "output/3832071895/pdf-1.png" } ] }
 ```
 ```
-{"pdf1":"baseline/pdf1.pdf","pdf2":"test/pdf1.pdf","success":true}
+{ "success": true }
 ```
 
 
