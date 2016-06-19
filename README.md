@@ -6,7 +6,7 @@ A simple tool in Node JS for comparing two PDF files and reporting whether any d
 ## Usage
 
 ```
-new PDFDiff("output").diff("baseline/pdf1.pdf", "test/pdf1.pdf");
+new PDFDiff().diff("baseline/pdf1.pdf", "test/pdf1.pdf");
 ```
 
 Examples of the output are:
