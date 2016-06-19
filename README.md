@@ -1,6 +1,6 @@
 # pdf-diff
 
-A simple tool in Node JS for comparing two PDF files and reporting whether any differences were detected.
+A simple tool in Node JS for visually comparing two PDF files and reporting whether any differences were detected.
 
 
 ## Usage
