@@ -74,7 +74,7 @@ PDFDiff.prototype = {
         };
 
         var prepareResults = function(results) {
-            var errors = results.filter(function(result) { return !result.success; });
+            var errors = results.filter(function(result) { return !result.match; });
             var toError = function(error) {
                 return {
                     page: parseInt(error.image.substring(0, error.image.indexOf(".")).split("-")[1])+1,
@@ -82,7 +82,7 @@ PDFDiff.prototype = {
                 };
             };
             var result = {
-                success: errors.length == 0
+                match: errors.length == 0
             };
             if (errors.length > 0) {
                 result.errors = results.map(toError);
@@ -164,7 +164,7 @@ PDFDiff.prototype = {
                     }
                     resolve({
                         image: outputImage,
-                        success: !isDifferent
+                        match: !isDifferent
                     });
                 }
             });

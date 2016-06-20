@@ -15,7 +15,7 @@ Examples of the output are:
 
 ```
 { 
-  "success": false, 
+  "match": false, 
   "errors": [ 
     { 
       "page": 1, 
@@ -30,7 +30,7 @@ Examples of the output are:
 ```
 ```
 { 
-  "success": true 
+  "match": true 
 }
 ```
 
