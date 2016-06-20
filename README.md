@@ -11,7 +11,7 @@ PDFDiff(outputDir, options)
 
 #### Parameters
 
-| name                     | description
+| Name                     | Description
 | ------------------------ | --------------------------------------------------------------------------------------------------
 | outputDir                | The directory where snapshot images of differences will be written. Default is "output".
 | options.imageDensity     | The pixel density of the images used for comparison. Default is 200.
