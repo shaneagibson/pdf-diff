@@ -2,6 +2,7 @@
   "name": "pdf-diff",
   "version": "1.0.0",
   "main": "index.js",
+  "license": "Apache-2.0",
   "author": {
     "name": "Shane Gibson",
     "email": "shane@epsilontechnologies.co.uk"
