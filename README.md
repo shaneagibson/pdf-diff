@@ -18,13 +18,14 @@ PDFDiff(outputDir, options)
 | options.tempDir          | The temporary directory where page images used for comparison will be stored. Default is "tmp".
 | options.overlays         | An array of overlays (each consisting of x0, y0, x1, y1 page coordinates). These will be rendered as black rectangles on each page, suppressing unintended diffs (i.e. for documents that render the template version number, etc).
 
+#### Example
 ```
 new PDFDiff(outputDir, options).diff("baseline/pdf1.pdf", "test/pdf1.pdf").then(function(output) {
   ...
 });
 ```
 
-Examples of the output are:
+#### Example Output
 
 ```
 { 
