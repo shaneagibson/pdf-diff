@@ -5,8 +5,21 @@ A simple tool in Node JS for visually comparing two PDF files and reporting whet
 
 ## Usage
 
+~~~
+PDFDiff(outputDir, options)
+~~~
+
+#### Parameters
+
+| name                     | description
+| ------------------------ | --------------------------------------------------------------------------------------------------
+| outputDir                | The directory where snapshot images of differences will be written. Default is "output".
+| options.imageDensity     | The pixel density of the images used for comparison. Default is 200.
+| options.tempDir          | The temporary directory where page images used for comparison will be stored. Default is "tmp".
+| options.overlays         | An array of overlays (each consisting of x0, y0, x1, y1 page coordinates). These will be rendered as black rectangles on each page, suppressing unintended diffs (i.e. for documents that render the template version number, etc).
+
 ```
-new PDFDiff().diff("baseline/pdf1.pdf", "test/pdf1.pdf").then(function(output) {
+new PDFDiff(outputDir, options).diff("baseline/pdf1.pdf", "test/pdf1.pdf").then(function(output) {
   ...
 });
 ```
