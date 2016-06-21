@@ -23,12 +23,14 @@ PDFDiff.prototype = {
 
         var self = this;
 
-        var imageFolder = function(pdf) { return self._tempDir+"/"+path.dirname(pdf)+"/"+path.basename(pdf, path.extname(pdf)) };
+        var random = Math.floor(Math.random() * (9999999999-1000000000)) + 1000000000 + 1;
 
-        var prepare = function(pdf) {
+        var imageFolder = self._tempDir+"/"+random;
+
+        var prepare = function(pdf, index) {
             return new Promise(function(resolve) {
-                var tmpPDF = imageFolder(pdf)+"/pdf.pdf";
-                createDirectory(imageFolder(pdf));
+                createDirectory(imageFolder+"/"+(index+1));
+                var tmpPDF = imageFolder+"/"+(index+1)+"/pdf.pdf";
                 copyFile(pdf, tmpPDF);
                 resolve(tmpPDF);
             });
@@ -47,28 +49,27 @@ PDFDiff.prototype = {
         };
 
         var fillMissingPages = function() {
-            var pdf1Images = readFiles(imageFolder(pdf1));
-            var pdf2Images = readFiles(imageFolder(pdf2));
+            var pdf1Images = readFiles(imageFolder+"/1");
+            var pdf2Images = readFiles(imageFolder+"/2");
             return Promise.all(_.difference(pdf1Images, pdf2Images).map(function(missingImage) {
-                var imageToCreate = imageFolder(_.contains(pdf1Images, missingImage) ? pdf2 : pdf1)+"/"+missingImage;
-                var dimensions = sizeOf(imageFolder(_.contains(pdf1Images, missingImage) ? pdf1 : pdf2)+"/"+missingImage);
+                var imageToCreate = imageFolder+"/"+(_.contains(pdf1Images, missingImage) ? "2" : "1")+"/"+missingImage;
+                var dimensions = sizeOf(imageFolder+"/"+(_.contains(pdf1Images, missingImage) ? "1" : "2")+"/"+missingImage);
                 return self._createBlankImage(imageToCreate, dimensions);
             }));
         };
 
         var comparePDFPageImages = function() {
             var onlyPNGFiles = function(file) { return path.extname(file) == ".png"; };
-            var random = Math.floor(Math.random() * (9999999999-1000000000)) + 1000000000 + 1;
             createDirectory(self._outputDir+"/"+random);
-            return Promise.all(readFiles(imageFolder(pdf1)).filter(onlyPNGFiles).map(function(image) {
-                return self._compareImage(imageFolder(pdf1)+"/"+image, imageFolder(pdf2)+"/"+image, self._outputDir+"/"+random+"/"+image);
+            return Promise.all(readFiles(imageFolder+"/1").filter(onlyPNGFiles).map(function(image) {
+                return self._compareImage(imageFolder+"/1/"+image, imageFolder+"/2/"+image, self._outputDir+"/"+random+"/"+image);
             }));
         };
 
         var processPDFs = function() {
             var promises = [];
-            [ pdf1, pdf2 ].forEach(function(pdf) {
-                promises.push(prepare(pdf).then(convertPDFToImages).then(processImageOverlays));
+            [ pdf1, pdf2 ].forEach(function(pdf, index) {
+                promises.push(prepare(pdf, index).then(convertPDFToImages).then(processImageOverlays));
             });
             return Promise.all(promises);
         };
@@ -77,7 +78,7 @@ PDFDiff.prototype = {
             var errors = results.filter(function(result) { return !result.match; });
             var toError = function(error) {
                 return {
-                    page: parseInt(error.image.substring(0, error.image.indexOf(".")).split("-")[1])+1,
+                    page: parseInt(error.image.substring(_.lastIndexOf(error.image, '-'), error.image.indexOf(".")))+1,
                     snapshot: error.image
                 };
             };
